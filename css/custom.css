@@ -197,6 +197,7 @@
 #status .details .desc {
 	padding-top:20px;
 	font-size:22px;
+	font-weight: bold;
 }
 
 .st-status-gif {
@@ -264,7 +265,9 @@
 #locsetup {
 	padding-top:32px;
 }
-
+.st-globe {
+	padding-top:30px;
+}
 
 
 
