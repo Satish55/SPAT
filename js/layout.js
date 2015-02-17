@@ -242,16 +242,10 @@ var Layout = function() {
     var handleFixedSidebar = function() {
         var menu = $('.page-sidebar-menu');
 
-        STApp.destroySlimScroll(menu);
-
         if ($('.page-sidebar-fixed').size() === 0) {
             return;
         }
 
-        if (STApp.getViewPort().width >= resBreakpointMd) {
-            menu.attr("data-height", _calculateFixedSidebarViewportHeight());
-            STApp.initSlimScroll(menu);
-        }
     };
 
     // Handles sidebar toggler to close/hide the sidebar.

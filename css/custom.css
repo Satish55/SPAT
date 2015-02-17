@@ -166,6 +166,13 @@
 .st-datepicker-dashboard input {
 	border-color:#45B6AF;
 }
+#st-accuracy {
+	float:right;
+	margin-top:5px;
+	padding-right:10px;
+	font-weight:bold;
+	font-size:16px;
+}
 
 /* Status Module */
 #status {

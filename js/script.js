@@ -85,170 +85,6 @@ var STApp = function() {
         }
     };
 
-    // Handles portlet tools & actions
-    var handlePortletTools = function() {
-        // handle portlet remove
-        $('body').on('click', '.portlet > .portlet-title > .tools > a.remove', function(e) {
-            e.preventDefault();
-            var portlet = $(this).closest(".portlet");
-
-            if ($('body').hasClass('page-portlet-fullscreen')) {
-                $('body').removeClass('page-portlet-fullscreen');
-            }
-
-            portlet.find('.portlet-title .fullscreen').tooltip('destroy');
-            portlet.find('.portlet-title > .tools > .reload').tooltip('destroy');
-            portlet.find('.portlet-title > .tools > .remove').tooltip('destroy');
-            portlet.find('.portlet-title > .tools > .config').tooltip('destroy');
-            portlet.find('.portlet-title > .tools > .collapse, .portlet > .portlet-title > .tools > .expand').tooltip('destroy');
-
-            portlet.remove();
-        });
-
-        // handle portlet fullscreen
-        $('body').on('click', '.portlet > .portlet-title .fullscreen', function(e) {
-            e.preventDefault();
-            var portlet = $(this).closest(".portlet");
-            if (portlet.hasClass('portlet-fullscreen')) {
-                $(this).removeClass('on');
-                portlet.removeClass('portlet-fullscreen');
-                $('body').removeClass('page-portlet-fullscreen');
-                portlet.children('.portlet-body').css('height', 'auto');
-            } else {
-                var height = STApp.getViewPort().height -
-                    portlet.children('.portlet-title').outerHeight() -
-                    parseInt(portlet.children('.portlet-body').css('padding-top')) -
-                    parseInt(portlet.children('.portlet-body').css('padding-bottom'));
-
-                $(this).addClass('on');
-                portlet.addClass('portlet-fullscreen');
-                $('body').addClass('page-portlet-fullscreen');
-                portlet.children('.portlet-body').css('height', height);
-            }
-        });
-
-        $('body').on('click', '.portlet > .portlet-title > .tools > a.reload', function(e) {
-            e.preventDefault();
-            var el = $(this).closest(".portlet").children(".portlet-body");
-            var url = $(this).attr("data-url");
-            var error = $(this).attr("data-error-display");
-            if (url) {
-                STApp.blockUI({
-                    target: el,
-                    animate: true,
-                    overlayColor: 'none'
-                });
-                $.ajax({
-                    type: "GET",
-                    cache: false,
-                    url: url,
-                    dataType: "html",
-                    success: function(res) {
-                        STApp.unblockUI(el);
-                        el.html(res);
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        STApp.unblockUI(el);
-                        var msg = 'Error on reloading the content. Please check your connection and try again.';
-                        if (error == "toastr" && toastr) {
-                            toastr.error(msg);
-                        } else if (error == "notific8" && $.notific8) {
-                            $.notific8('zindex', 11500);
-                            $.notific8(msg, {
-                                theme: 'ruby',
-                                life: 3000
-                            });
-                        } else {
-                            alert(msg);
-                        }
-                    }
-                });
-            } else {
-                // for demo purpose
-                STApp.blockUI({
-                    target: el,
-                    animate: true,
-                    overlayColor: 'none'
-                });
-                window.setTimeout(function() {
-                    STApp.unblockUI(el);
-                }, 1000);
-            }
-        });
-
-        // load ajax data on page init
-        $('.portlet .portlet-title a.reload[data-load="true"]').click();
-
-        $('body').on('click', '.portlet > .portlet-title > .tools > .collapse, .portlet .portlet-title > .tools > .expand', function(e) {
-            e.preventDefault();
-            var el = $(this).closest(".portlet").children(".portlet-body");
-            if ($(this).hasClass("collapse")) {
-                $(this).removeClass("collapse").addClass("expand");
-                el.slideUp(200);
-            } else {
-                $(this).removeClass("expand").addClass("collapse");
-                el.slideDown(200);
-            }
-        });
-    };
-
-    // Handles custom checkboxes & radios using jQuery Uniform plugin
-    var handleUniform = function() {
-        if (!$().uniform) {
-            return;
-        }
-        var test = $("input[type=checkbox]:not(.toggle, .make-switch, .icheck), input[type=radio]:not(.toggle, .star, .make-switch, .icheck)");
-        if (test.size() > 0) {
-            test.each(function() {
-                if ($(this).parents(".checker").size() === 0) {
-                    $(this).show();
-                    $(this).uniform();
-                }
-            });
-        }
-    };
-
-    // Handles custom checkboxes & radios using jQuery iCheck plugin
-    var handleiCheck = function() {
-        if (!$().iCheck) {
-            return;
-        }
-
-        $('.icheck').each(function() {
-            var checkboxClass = $(this).attr('data-checkbox') ? $(this).attr('data-checkbox') : 'icheckbox_minimal-grey';
-            var radioClass = $(this).attr('data-radio') ? $(this).attr('data-radio') : 'iradio_minimal-grey';
-
-            if (checkboxClass.indexOf('_line') > -1 || radioClass.indexOf('_line') > -1) {
-                $(this).iCheck({
-                    checkboxClass: checkboxClass,
-                    radioClass: radioClass,
-                    insert: '<div class="icheck_line-icon"></div>' + $(this).attr("data-label")
-                });
-            } else {
-                $(this).iCheck({
-                    checkboxClass: checkboxClass,
-                    radioClass: radioClass
-                });
-            }
-        });
-    };
-
-    // Handles Bootstrap switches
-    var handleBootstrapSwitch = function() {
-        if (!$().bootstrapSwitch) {
-            return;
-        }
-        $('.make-switch').bootstrapSwitch();
-    };
-
-    // Handles Bootstrap confirmations
-    var handleBootstrapConfirmation = function() {
-        if (!$().confirmation) {
-            return;
-        }
-        $('[data-toggle=confirmation]').confirmation({ container: 'body', btnOkClass: 'btn-xs btn-success', btnCancelClass: 'btn-xs btn-danger'});
-    }
-    
     // Handles Bootstrap Accordions.
     var handleAccordions = function() {
         $('body').on('shown.bs.collapse', '.accordion.scrollable', function(e) {
@@ -269,34 +105,6 @@ var STApp = function() {
         }
     };
 
-    // Handles Bootstrap Modals.
-    var handleModals = function() {        
-        // fix stackable modal issue: when 2 or more modals opened, closing one of modal will remove .modal-open class. 
-        $('body').on('hide.bs.modal', function() {
-            if ($('.modal:visible').size() > 1 && $('html').hasClass('modal-open') === false) {
-                $('html').addClass('modal-open');
-            } else if ($('.modal:visible').size() <= 1) {
-                $('html').removeClass('modal-open');
-            }
-        });
-
-        // fix page scrollbars issue
-        $('body').on('show.bs.modal', '.modal', function() {
-            if ($(this).hasClass("modal-scroll")) {
-                $('body').addClass("modal-open-noscroll");
-            }
-        });
-
-        // fix page scrollbars issue
-        $('body').on('hide.bs.modal', '.modal', function() {
-            $('body').removeClass("modal-open-noscroll");
-        });
-
-        // remove ajax content and remove cache on modal closed 
-        $('body').on('hidden.bs.modal', '.modal:not(.modal-cached)', function () {
-            $(this).removeData('bs.modal');
-        });
-    };
 
     // Handles Bootstrap Tooltips.
     var handleTooltips = function() {
@@ -379,31 +187,6 @@ var STApp = function() {
         });
     };
 
-    // Handles scrollable contents using jQuery SlimScroll plugin.
-    var handleScrollers = function() {
-        STApp.initSlimScroll('.scroller');
-    };
-
-    // Handles Image Preview using jQuery Fancybox plugin
-    var handleFancybox = function() {
-        if (!jQuery.fancybox) {
-            return;
-        }
-
-        if ($(".fancybox-button").size() > 0) {
-            $(".fancybox-button").fancybox({
-                groupAttr: 'data-rel',
-                prevEffect: 'none',
-                nextEffect: 'none',
-                closeBtn: true,
-                helpers: {
-                    title: {
-                        type: 'inside'
-                    }
-                }
-            });
-        }
-    };
 
     // Fix input placeholder issue for IE8 and IE9
     var handleFixInputPlaceholderForIE = function() {
@@ -454,41 +237,14 @@ var STApp = function() {
             handleInit(); // initialize core variables
             handleOnResize(); // set and handle responsive    
 
-            //UI Component handlers            
-            handleUniform(); // hanfle custom radio & checkboxes
-            handleiCheck(); // handles custom icheck radio and checkboxes
-            handleBootstrapSwitch(); // handle bootstrap switch plugin
-            handleScrollers(); // handles slim scrolling contents 
-            handleFancybox(); // handle fancy box
-            handleSelect2(); // handle custom Select2 dropdowns
-            handlePortletTools(); // handles portlet action bar functionality(refresh, configure, toggle, remove)
             handleAlerts(); //handle closabled alerts
             handleDropdowns(); // handle dropdowns
             handleTabs(); // handle tabs
             handleTooltips(); // handle bootstrap tooltips
             handlePopovers(); // handles bootstrap popovers
             handleAccordions(); //handles accordions 
-            handleModals(); // handle modals
-            handleBootstrapConfirmation(); // handle bootstrap confirmations
-
             // Hacks
             handleFixInputPlaceholderForIE(); //IE8 & IE9 input placeholder issue fix
-        },
-
-        //main function to initiate core javascript after ajax complete
-        initAjax: function() {
-            handleUniform(); // handles custom radio & checkboxes     
-            handleiCheck(); // handles custom icheck radio and checkboxes
-            handleBootstrapSwitch(); // handle bootstrap switch plugin
-            handleDropdownHover(); // handles dropdown hover       
-            handleScrollers(); // handles slim scrolling contents 
-            handleSelect2(); // handle custom Select2 dropdowns
-            handleFancybox(); // handle fancy box
-            handleDropdowns(); // handle dropdowns
-            handleTooltips(); // handle bootstrap tooltips
-            handlePopovers(); // handles bootstrap popovers
-            handleAccordions(); //handles accordions 
-            handleBootstrapConfirmation(); // handle bootstrap confirmations
         },
 
         //init main components 
@@ -511,7 +267,6 @@ var STApp = function() {
             _runResizeHandlers();
         },
 
-        // wrSTApper function to scroll(focus) to an element
         scrollTo: function(el, offeset) {
             var pos = (el && el.size() > 0) ? el.offset().top : 0;
 
@@ -527,148 +282,9 @@ var STApp = function() {
             }, 'slow');
         },
 
-        initSlimScroll: function(el) {
-            $(el).each(function() {
-                if ($(this).attr("data-initialized")) {
-                    return; // exit
-                }
-
-                var height;
-
-                if ($(this).attr("data-height")) {
-                    height = $(this).attr("data-height");
-                } else {
-                    height = $(this).css('height');
-                }
-
-                $(this).slimScroll({
-                    allowPageScroll: true, // allow page scroll when the element scroll is ended
-                    size: '7px',
-                    color: ($(this).attr("data-handle-color") ? $(this).attr("data-handle-color") : '#bbb'),
-                    wrapperClass: ($(this).attr("data-wrapper-class") ? $(this).attr("data-wrapper-class") : 'slimScrollDiv'),
-                    railColor: ($(this).attr("data-rail-color") ? $(this).attr("data-rail-color") : '#eaeaea'),
-                    position: isRTL ? 'left' : 'right',
-                    height: height,
-                    alwaysVisible: ($(this).attr("data-always-visible") == "1" ? true : false),
-                    railVisible: ($(this).attr("data-rail-visible") == "1" ? true : false),
-                    disableFadeOut: true
-                });
-
-                $(this).attr("data-initialized", "1");
-            });
-        },
-
-        destroySlimScroll: function(el) {
-            $(el).each(function() {
-                if ($(this).attr("data-initialized") === "1") { // destroy existing instance before updating the height
-                    $(this).removeAttr("data-initialized");
-                    $(this).removeAttr("style");
-
-                    var attrList = {};
-
-                    // store the custom attribures so later we will reassign.
-                    if ($(this).attr("data-handle-color")) {
-                        attrList["data-handle-color"] = $(this).attr("data-handle-color");
-                    }
-                    if ($(this).attr("data-wrapper-class")) {
-                        attrList["data-wrapper-class"] = $(this).attr("data-wrapper-class");
-                    }
-                    if ($(this).attr("data-rail-color")) {
-                        attrList["data-rail-color"] = $(this).attr("data-rail-color");
-                    }
-                    if ($(this).attr("data-always-visible")) {
-                        attrList["data-always-visible"] = $(this).attr("data-always-visible");
-                    }
-                    if ($(this).attr("data-rail-visible")) {
-                        attrList["data-rail-visible"] = $(this).attr("data-rail-visible");
-                    }
-
-                    $(this).slimScroll({
-                        wrapperClass: ($(this).attr("data-wrapper-class") ? $(this).attr("data-wrapper-class") : 'slimScrollDiv'),
-                        destroy: true
-                    });
-
-                    var the = $(this);
-
-                    // reassign custom attributes
-                    $.each(attrList, function(key, value) {
-                        the.attr(key, value);
-                    });
-
-                }
-            });
-        },
-
         // function to scroll to the top
         scrollTop: function() {
             STApp.scrollTo();
-        },
-
-        // wrSTApper function to  block element(indicate loading)
-        blockUI: function(options) {
-            options = $.extend(true, {}, options);
-            var html = '';
-            if (options.animate) {
-                html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '">' + '<div class="block-spinner-bar"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>' + '</div>';
-            } else if (options.iconOnly) {
-                html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '"><img src="' + this.getGlobalImgPath() + 'loading-spinner-grey.gif" align=""></div>';
-            } else if (options.textOnly) {
-                html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '"><span>&nbsp;&nbsp;' + (options.message ? options.message : 'LOADING...') + '</span></div>';
-            } else {
-                html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '"><img src="' + this.getGlobalImgPath() + 'loading-spinner-grey.gif" align=""><span>&nbsp;&nbsp;' + (options.message ? options.message : 'LOADING...') + '</span></div>';
-            }
-
-            if (options.target) { // element blocking
-                var el = $(options.target);
-                if (el.height() <= ($(window).height())) {
-                    options.cenrerY = true;
-                }
-                el.block({
-                    message: html,
-                    baseZ: options.zIndex ? options.zIndex : 1000,
-                    centerY: options.cenrerY !== undefined ? options.cenrerY : false,
-                    css: {
-                        top: '10%',
-                        border: '0',
-                        padding: '0',
-                        backgroundColor: 'none'
-                    },
-                    overlayCSS: {
-                        backgroundColor: options.overlayColor ? options.overlayColor : '#555',
-                        opacity: options.boxed ? 0.05 : 0.1,
-                        cursor: 'wait'
-                    }
-                });
-            } else { // page blocking
-                $.blockUI({
-                    message: html,
-                    baseZ: options.zIndex ? options.zIndex : 1000,
-                    css: {
-                        border: '0',
-                        padding: '0',
-                        backgroundColor: 'none'
-                    },
-                    overlayCSS: {
-                        backgroundColor: options.overlayColor ? options.overlayColor : '#555',
-                        opacity: options.boxed ? 0.05 : 0.1,
-                        cursor: 'wait'
-                    }
-                });
-            }
-        },
-
-        // wrSTApper function to  un-block element(finish loading)
-        unblockUI: function(target) {
-            if (target) {
-                $(target).unblock({
-                    onUnblock: function() {
-                        $(target).css('position', '');
-                        $(target).css('zoom', '');
-                    }
-                });
-            } else {
-                $.unblockUI();
-            }
         },
 
         startPageLoading: function(options) {
@@ -736,30 +352,6 @@ var STApp = function() {
             }
 
             return id;
-        },
-
-        // initializes uniform elements
-        initUniform: function(els) {
-            if (els) {
-                $(els).each(function() {
-                    if ($(this).parents(".checker").size() === 0) {
-                        $(this).show();
-                        $(this).uniform();
-                    }
-                });
-            } else {
-                handleUniform();
-            }
-        },
-
-        //wrSTApper function to update/sync jquery uniform checkbox & radios
-        updateUniform: function(els) {
-            $.uniform.update(els); // update the uniform checkbox & radios UI after the actual input control state changed
-        },
-
-        //public function to initialize the fancybox plugin
-        initFancybox: function() {
-            handleFancybox();
         },
 
         //public helper function to get actual input value(used in IE9 and IE8 due to placeholder attribute not supported)
