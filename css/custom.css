@@ -163,7 +163,9 @@
 	padding-top:50px;
 }
 
-
+.st-datepicker-dashboard input {
+	border-color:#45B6AF;
+}
 
 /* Status Module */
 #status {
