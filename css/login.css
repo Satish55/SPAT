@@ -1,0 +1,273 @@
+body{
+	background: url(../img/login_bg.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	font-family:'HelveticaNeue','Arial', sans-serif;
+
+}
+a{
+	color:#1469b1;
+	text-decoration: none;
+}
+a:hover{
+	/*color:#aaa; */
+}
+.pull-right{
+	float: right;
+}
+.pull-left{
+	float: left;
+}
+.clear-fix{
+	clear:both;
+}
+.logo{
+	text-align: center; 
+	margin: 20px 20px 30px 20px;
+}
+#st-formwrap{
+	background: #33b5e5; 
+	background: rgba(51, 181, 229, 0.2); 
+	width:100%; 
+	height:100%; 
+	position: absolute; 
+	top:0; 
+	left:0;
+	transition:all .3s ease;
+}
+.darken-bg{
+	background: rgba(51, 181, 229, 0.4) !important;  
+	transition:all .3s ease;
+}
+#form{
+	position: absolute;
+	width:360px;
+	height:auto;
+	background-color: #fff;
+	margin:auto;
+	border-radius: 5px;
+	padding:20px;
+	left:50%;
+	top:50%;
+	margin-left:-180px;
+	margin-top:-235px;
+}
+.form-group{
+	position: relative; 
+	display: block; 
+	margin-bottom: 20px;
+}
+input{
+	transition: all .2s ease;
+}
+
+input.form-control{
+	color:#8a8a8a;
+	display: block;
+	width: 90%;
+	height: 44px;
+	padding: 5px 5%;
+	border:1px solid #ccc;
+	-moz-border-radius: 27px;
+	-webkit-border-radius: 27px;
+	border-radius: 27px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: #fff;
+	font-family:'HelveticaNeue','Arial', sans-serif;
+	font-size: 105%;
+	letter-spacing: .8px;
+}
+input[type="submit"].login:hover{
+	background-color: #fff; 
+	border:1px solid #55b1df; 
+	color:#55b1df; 
+	cursor:pointer;
+}
+
+input[type="submit"].login:focus{
+	outline: none;
+}
+.form-group .form-control:focus{
+	outline: none; 
+	border:1px solid #58bff6; 
+	color:#58bff6; 
+}
+.form-group .formLabel {
+	position: absolute;
+	left:26px;
+	top:2px;
+	transition:all .4s ease;
+	color:#bbb;}
+.formTop{
+	top:-22px !important; 
+	left:26px; 
+	background-color: #fff; 
+	padding:0 5px; 
+	font-size: 14px;
+	color:#58bff6 !important;
+}
+.formStatus{
+	color:#8a8a8a !important;
+}
+input[type="submit"].login{
+	float:right;
+	width: 112px;
+	height: 37px;
+	-moz-border-radius: 19px;
+	-webkit-border-radius: 19px;
+	border-radius: 19px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: #049087;;
+	border:1px solid #049087;;
+	border:none;
+	color: #fff;
+	font-weight: bold;
+}
+.form-footer {
+	text-align: center;
+	font-size: 14px;
+	color: #bbb;
+}
+.form-group .formLabel.st-remember-text {
+	left: 46px;
+}
+.st-remember {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+
+/*iPad Group */
+	/*iPad both oreintations */
+	@media only screen 
+	and (min-device-width : 768px) 
+	and (max-device-width : 1024px)  { 
+		#form{
+			width: ;
+		}
+	}
+	
+	/*Retina display taken in to account */
+	/*iPad 3 & 4  only */
+	@media only screen 
+	and (min-device-width : 768px) 
+	and (max-device-width : 1024px)
+	and (-webkit-min-device-pixel-ratio: 2) { /* STYLES GO HERE */}
+
+
+	/*Also iPad Mini */
+	/*iPad 1 & 2 only*/
+	@media only screen 
+	and (min-device-width : 768px) 
+	and (max-device-width : 1024px) 
+	and (-webkit-min-device-pixel-ratio: 1){ /* STYLES GO HERE */}
+
+/*iPhone 5 & 5S Group*/
+	/*iPhone 5 & 5S */
+	@media only screen 
+	and (min-device-width : 320px) 
+	and (max-device-width : 568px) { 
+		#form{
+			background: transparent;
+			width:280px;
+			margin: 0 auto;
+			border-radius: 5px;
+			padding: 20px;
+			left: auto;
+			top: auto;
+			margin-left: 0;
+			margin-top: 0px;
+		}
+		.form-group .formLabel.st-remember-text ,
+		.form-footer {
+			color: #fff;
+		}
+		.formTop {
+			border-radius: 20px;
+		}
+		.form-group a {
+			color: #fff;
+		}
+	}
+
+/*iPhone 2G, 3G, 4, 4S */
+	/*iPhone 2G, 3G, 4, 4S */
+	@media only screen 
+	and (min-device-width : 320px) 
+	and (max-device-width : 480px) { /* STYLES GO HERE */}
+
+	/*Landscape */
+	@media only screen 
+	and (min-device-width : 320px) 
+	and (max-device-width : 480px) 
+	and (orientation : landscape) { /* STYLES GO HERE */}
+
+	/*Potrait*/
+	@media only screen 
+	and (min-device-width : 320px) 
+	and (max-device-width : 480px) 
+	and (orientation : portrait) { /* STYLES GO HERE */ }
+
+/*iPhone 6 Group */
+	/*iPhone 6 */
+	@media only screen 
+	and (min-device-width : 375px) 
+	and (max-device-width : 667px) { 
+		#form{
+			background: transparent;
+			width: 335px;
+			margin: 0 auto;
+			border-radius: 5px;
+			padding: 20px;
+			left: auto;
+			top: auto;
+			margin-left: 0;
+			margin-top: 0px;
+		}
+		.form-group .formLabel.st-remember-text , .form-footer{
+			color: #fff;
+		}
+		.formTop {
+			border-radius: 20px;
+		}
+		.form-group a {
+			color: #fff;
+		}
+	}
+	/*iPhone 6 Plus */
+	@media only screen 
+	and (min-device-width : 414px) 
+	and (max-device-width : 736px) { 
+		#form{
+			background: transparent;
+			width:360px;
+			margin: 0 auto;
+			border-radius: 5px;
+			padding: 20px;
+			left: auto;
+			top: auto;
+			margin-left: 0;
+			margin-top: 0px;
+		}
+		.form-group .formLabel.st-remember-text , .form-footer {
+			color: #fff;
+		}
+		.formTop {
+			border-radius: 20px;
+		}
+	}
+
+	@media only screen 
+	and (min-device-width : 540px) 
+	and (max-device-width : 960px) 
+	and (orientation : landscape) { 
+		#form {
+			margin-left: 125px;
+		}
+	}
