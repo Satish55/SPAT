@@ -275,7 +275,36 @@
 
 /*Control Module */
 #control {
-	padding-top: 32px;
+	padding-top: 0px;
 }
+.st-btnc {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	min-height: 250px;
+}
+.st-btnc .btn{
+	margin-bottom:30px;
+}
+.st-cimg {
+	margin-top:35px;
+}
+.st-cst {
+	font-size:20px;
+	margin-bottom:10px;
+}
+.st-cstwrap {
+	margin-top:30px;
+}
+.st-cright {
+	border-left:2px dashed #ccc;
+}
+.st-circle {
+	border-radius: 50% !important;
+	padding: 15px;
+}
+
+
+
 
 /*Delete */
