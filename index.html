@@ -16,7 +16,7 @@
 <link href="css/layout.css" rel="stylesheet" type="text/css"/>
 <link href="css/themes/default.css" rel="stylesheet" type="text/css"/>
 <link href="css/style.css" rel="stylesheet" type="text/css"/>
-<link rel="shortcut icon" href="favicon.ico"/>
+<link rel="shortcut icon" href="img/favicon.ico"/>
 </head>
 <!-- .page-sidebar-closed-hide-logo , .page-sidebar-fixed -->
 <body class="page-header-fixed">
@@ -295,7 +295,7 @@
 									</div>
 								</div>
 								<div class="st-status-gif">
-									<img src="img/status/day.gif"  class="img-responsive" alt="Sun Angle Gif" />
+									<img src="img/status/sun.gif"  class="img-responsive" alt="Sun Angle Gif" />
 								</div>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 st-box">
@@ -333,8 +333,8 @@
 									</div>
 								</div>
 								<div class="st-status-motor text-center">
-									<i class="fa fa-circle fa-3x st-green st-blink"></i>
-									<i class="fa fa-circle fa-3x  st-red"></i>
+									<i class="fa fa-circle fa-4x st-green st-blink"></i>
+									<i class="fa fa-circle fa-4x  st-red hide"></i>
 								</div>
 							</div>
 						</div>
@@ -519,39 +519,39 @@
 									<span class="caption-subject theme-font-color bold">Tracker E-Status : SMT01</span>
 								</div>
 							</div>
-							<div class="portlet-body">
-								<div class="col-md-1 st-pad">
+							<div class="portlet-body clearfix" >
+								<div class="col-md-2">
 									<div class="btn-group-vertical st-btnc" role="group">
-										<button type="button" class="btn btn-md btn-success">Auto</button>
-										<button  type="button" class="btn btn-md btn-success">Manual</button>
+										<button type="button" class="btn btn-lg btn-success">Auto</button>
+										<button  type="button" class="btn btn-lg btn-success">Manual</button>
 									</div>
 								</div>
-								<div class="col-md-3 st-pad">
+								<div class="col-md-4 col-md-offset-2">
 									<img src="img/status/day.gif" class="img-responsive st-cimg" alt="Control image" />
 								</div>
-								<div class="col-md-3 st-cstwrap">
+								<div class="col-md-4 st-cstwrap pull-right">
 									<div class="clearfix st-cst">
-										<span class="pull-left">Sun Angle</span>
-										<span class="bold pull-right">23.978</span>
+										<span class="pull-left">Sun Angle &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+										<span class="bold st-num"> 23.978</span>
 									</div>
 									<div class="clearfix st-cst">
-										<span class="pull-left">Tracker Angle</span>
-										<span class="bold pull-right">23.978</span>
+										<span class="pull-left">Tracker Angle :</span>
+										<span class="bold st-num ">23.978</span>
 									</div>
 									<div class="clearfix st-cst">
-										<span class="pull-left">Tracker Mode</span>
-										<span class="bold pull-right">22</span>
+										<span class="pull-left">Tracker Mode :</span>
+										<span class="bold st-num"> 22</span>
 									</div>
 									<div class="clearfix st-cst">
-										<span class="pull-left">Motor Status</span>
-										<span class="bold pull-right">1</span>
+										<span class="pull-left">Motor Status  &nbsp;:</span>
+										<span class="bold st-num">1</span>
 									</div>
 								</div>
-								<div class="col-md-5 pull-right st-cright">
+								<div class="col-md-5 pull-right st-cright hide">
 									<div class="col-md-5 st-pad">
 										<img src="img/status/day.gif" class="img-responsive st-cimg" alt="Control image" />
 									</div>
-									<div class="col-md-7 st-pad">
+									<div class="col-md-7">
 										<div class="btn-group-vertical st-btnc col-md-5 st-pad" role="group">
 											<button type="button" class="btn btn-success">East</button>
 											<button type="button" class="btn btn-danger st-circle">Stop</button>
@@ -578,7 +578,7 @@
 						</a>
 					</li>
 					<li class="col-lg-3 col-md-3 col-sm-6 col-xs-12 st-plink">
-						<a href="#control">Control</a>
+						<a href="#control" class="col-lg-12 col-md-12">Control</a>
 					</li>
 			</div>
 		</div>
@@ -603,7 +603,7 @@
 	<script src="js/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="js/script.js" type="text/javascript"></script>
 	<script src="js/layout.js" type="text/javascript"></script>
-	<script src="js/custom.js" type="text/javascript"></script>
+	<script src="js/st.js" type="text/javascript"></script>
 	<script>
 		jQuery(document).ready(function() {    
 		   	STApp.init(); 

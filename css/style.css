@@ -9,10 +9,8 @@
 }
 .st-plink {
 	list-style: none;
-	padding: 10px 15px;
 	text-align: center;
-	background: #0099ff;
-	background:#364150;
+	background: #049087;
 	font-size: 23px;
 	/*border-right: 2px solid #338DDA;*/
 	border-right:2px solid rgba(52, 46, 46, 1);
@@ -20,6 +18,7 @@
 }
 .st-plink a {
 	display: block;
+	padding: 10px 15px;
 	text-decoration: none;
 	font-family: 'Josefin Slab',serif;
 	font-size: 24px;
@@ -36,14 +35,14 @@
 	width: 0;
 	position: absolute;
 	pointer-events: none;
-	border-bottom-color: #049087;
+	border-bottom-color: #364150;
 	border-width: 20px;
 	left: 50%;
 	margin-left: -20px;
 }
 .st-plink:hover {
 	/*background: #1469B1;*/
-	background:#049087;
+	background:#364150;
 }
 .st-plink .icon {
 	display: inline-block;
@@ -61,7 +60,7 @@
 }
 
 .st-pactive {
-	background:#049087;
+	background:#364150;
 	/* background: #1469B1; */
 	color: #ffffff !important;
 }
@@ -132,16 +131,18 @@
 .st-toggler {
 	background-image: url(../img/sidebar-toggle-light.png);
 	float: right;
-	margin: -17px 0 0 0;
+	margin: -22px 0 0 0;
 	display: block;
+	border: 1px solid #414B59;
 	cursor: pointer;
+	padding: 13px 15px;
 	width: 20px;
 	height: 14px;
 	background-repeat: no-repeat;
 	background-position: center center;
 }
 .page-sidebar-menu-closed .st-toggler {
-	margin:0px;
+	margin: -8px -5px;
 }
 
 /*Header */
@@ -215,13 +216,9 @@
 
 .st-green {
 	color:green;
-	height:40px;
-
 }
 .st-red {
 	color:red;
-	height:40px;
-	opacity:0.4;
 }
 .st-blink {
     -webkit-animation-name: blink;
@@ -305,7 +302,30 @@
 .st-pad {
 	padding:0px;
 }
+.st-num {
+	padding-left:10px;
+}
+#control .portlet-body {
+	padding-top:40px;
+}
 
 
+/*Date Picker */
+.datepicker.dropdown-menu {
+	background:#364150;
+	color:#ffffff;
+}
 
-/*Delete */
+.datepicker table td ,
+.datepicker table th ,
+.datepicker table tr td.old, 
+.datepicker table tr td.new {
+	color:#ffffff;
+}
+.datepicker table tr td.day:hover, 
+.datepicker table tr td.day.focused,
+.datepicker thead tr:first-child th:hover, 
+.datepicker tfoot tr th:hover {
+	background:#e6e9f2;
+	color:#000;
+}

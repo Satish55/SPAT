@@ -1426,8 +1426,8 @@ Page content
     margin-left: 235px;
     position: fixed;
     bottom: 0px;
-    left: 15px;
-    right: 20px;
+    left: 20px;
+	right: 35px;
     z-index: 9999;
     max-height: 75px;
   }
